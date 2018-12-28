@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import "./header.css";
+import { Link } from "react-router-dom";
+import "./header.less";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faNewspaper } from "@fortawesome/free-solid-svg-icons";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -23,23 +24,27 @@ class Header extends Component {
           <NavbarToggler />
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/components/">Components</NavLink>
-              </NavItem>
-              <NavItem>
+              </NavItem> */}
+              {/* <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">
                   GitHub
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
+                <DropdownToggle nav>
+                  <FontAwesomeIcon icon={faNewspaper} size="2x" />
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
+                  <Link to="/hot" className="dropdown-item">
+                    Home
+                  </Link>
                   <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
+                  <Link to="/prefs" className="dropdown-item">
+                    Preferences
+                  </Link>
+                  {/* <DropdownItem>Option 1</DropdownItem> */}
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

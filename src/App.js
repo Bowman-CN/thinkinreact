@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import "./App.css";
-import GoodLists from "../src/components/goods-list/list";
-import  Header  from "../src/components/header/header";
+import "./App.less";
+import { Switch, Route } from "react-router-dom";
+import Header from "./components/header/header";
+import Hot from "./pages/hot/hot";
+import Prefs from "./pages/prefs/prefs";
+import NoMatch from "./pages/nomatch/nomatch";
 
 class App extends Component {
   render() {
@@ -9,7 +12,12 @@ class App extends Component {
       <div className="App">
         <Header />
         <div className="main-content">
-          <GoodLists />
+          <Switch>
+            <Route exact path="/hot" component={Hot} />
+            <Route path="/prefs" component={Prefs} />
+            {/* when none of the above match, <NoMatch> will be rendered */}
+            <Route component={NoMatch} />
+          </Switch>
         </div>
       </div>
     );
