@@ -18,20 +18,17 @@ import {
 class Header extends Component {
   render() {
     return (
-      <div>
-        <Navbar color="light" light expand="md">
+      <div style={{ marginBottom: "66px" }}>
+        <Navbar
+          color="light"
+          className="shadow fixed-top"
+          light
+          expand="md"
+        >
           <NavbarBrand href="#">Paperboy</NavbarBrand>
           <NavbarToggler />
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
-              {/* <NavItem>
-                <NavLink href="/components/">Components</NavLink>
-              </NavItem> */}
-              {/* <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
-                  GitHub
-                </NavLink>
-              </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav>
                   <FontAwesomeIcon icon={faNewspaper} size="2x" />
@@ -43,6 +40,10 @@ class Header extends Component {
                   <DropdownItem divider />
                   <Link to="/prefs" className="dropdown-item">
                     Preferences
+                  </Link>
+                  <DropdownItem divider />
+                  <Link to="/login" className="dropdown-item">
+                    Login
                   </Link>
                   {/* <DropdownItem>Option 1</DropdownItem> */}
                 </DropdownMenu>

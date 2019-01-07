@@ -5,6 +5,7 @@ import Header from "./components/header/header";
 import Hot from "./pages/hot/hot";
 import Prefs from "./pages/prefs/prefs";
 import NoMatch from "./pages/nomatch/nomatch";
+import login from "./pages/login/login";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/hot" component={Hot} />
             <Route path="/prefs" component={Prefs} />
+            <Route path="/login" component={login} />
             {/* when none of the above match, <NoMatch> will be rendered */}
             <Route component={NoMatch} />
           </Switch>

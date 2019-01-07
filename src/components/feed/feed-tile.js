@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./feed-tile.less"; // Tell Webpack that Button.js uses these styles
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Card, CardText, CardSubtitle, CardBody, Badge } from "reactstrap";
 
 class FeedTile extends Component {
@@ -22,10 +20,10 @@ class FeedTile extends Component {
       hasImage
     } = this.props;
     return (
-      <Card style={{ padding: "1rem" }} className="p-3 my-3">
+      <Card style={{ padding: "1rem" }} className="card-shades p-3 my-3">
         <div className="row-layout">
           <div className="content">
-            <CardBody style={{ width: "80%" }}>
+            <CardBody style={{ width: "80%", padding: "0.25rem" }}>
               <CardSubtitle>
                 {author}
                 <span style={{ fontSize: ".8rem" }} className="ml-5 text-muted">
@@ -42,12 +40,14 @@ class FeedTile extends Component {
                   {infoBody}
                 </a>
               </CardText>
-              <Badge color="light">
-                <FontAwesomeIcon icon={faHeart} />
-              </Badge>
-              <Badge color="light">
-                <FontAwesomeIcon icon={faStar} />
-              </Badge>
+              <div>
+                <Badge color="light" className="badge-btn">
+                  LIKE
+                </Badge>
+                <Badge color="light" className="badge-btn">
+                  FAV
+                </Badge>
+              </div>
             </CardBody>
           </div>
           <div className="img-sec">
@@ -77,7 +77,7 @@ class FeedTile extends Component {
 
 FeedTile.defaultProps = {
   infoBody: "no message has been loaded",
-  infoLink: "javascript:void(0)",
+  infoLink: "#",
   image: "",
   infoTimestamp: "time",
   author: "Paperboy",
