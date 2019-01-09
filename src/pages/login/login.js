@@ -1,13 +1,22 @@
 import React, { Component } from "react";
-import { Button, Alert } from "reactstrap";
+import { Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Form, Field } from "formik";
+import axios from "axios";
 import * as yup from "yup";
 import "./login.less";
 class login extends Component {
-  loginFormSubmit(e) {
-    console.log("FORM SUBMIT");
+  loginFormSubmit(vals) {
+    console.log(vals);
+    axios
+      .post("https://localhost/apis/auth/login", vals)
+      .then(function(response) {
+        window.location.assign("http://localhost:3000/hot");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
   render() {
     let loginSchema = yup.object().shape({
@@ -22,7 +31,10 @@ class login extends Component {
     return (
       <Formik
         name="loginForm"
-        onSubmit={this.loginFormSubmit.bind(this)}
+        onSubmit={values => {
+          // same shape as initial values
+          this.loginFormSubmit(values);
+        }}
         initialValues={{
           name: "",
           password: ""
@@ -34,10 +46,13 @@ class login extends Component {
             <div className="d-flex flex-column align-items-center mt-1 mr-auto ml-auto">
               <div className="col-lg-6 col-md-6 col-sm-8 col-12 p-3 border border-light rounded shadow">
                 <div className="l-input-container">
-                  <FontAwesomeIcon icon={faUser} className={
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className={
                       "ico  " +
                       (errors.name && touched.name ? "text-danger" : "")
-                    } />
+                    }
+                  />
 
                   <Field
                     name="name"
@@ -55,10 +70,13 @@ class login extends Component {
                   </p>
                 ) : null}
                 <div className="l-input-container">
-                  <FontAwesomeIcon icon={faKey} className={
+                  <FontAwesomeIcon
+                    icon={faKey}
+                    className={
                       "ico  " +
                       (errors.password && touched.password ? "text-danger" : "")
-                    } />
+                    }
+                  />
 
                   <Field
                     name="password"
@@ -78,7 +96,13 @@ class login extends Component {
                 ) : null}
 
                 <div className="text-center pt-5 pl-3 pr-3">
-                  <Button outline type="submit" size="sm" color="danger" className="mr-1">
+                  <Button
+                    outline
+                    type="submit"
+                    size="sm"
+                    color="danger"
+                    className="mr-1"
+                  >
                     SIGN IN
                   </Button>
                   <Button outline size="sm" color="info">
